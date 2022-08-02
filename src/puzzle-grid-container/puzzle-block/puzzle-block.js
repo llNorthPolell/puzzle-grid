@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 export function PuzzleBlock({children, ...props}){
     function handleDragStart(e){
         e.target.classList.add('dragging');
-        console.log("Dragging " + e.target.id);
     }
 
     function handleDragEnd (e) {
@@ -12,15 +11,12 @@ export function PuzzleBlock({children, ...props}){
 
     function handleOnDragOver (e){
         e.preventDefault();
-        console.log("Dragged over " + e.target.id);
-        
 
         const dragItem = document.querySelector('.dragging');
         const beforeOrAfter = getDropBeforeOrAfter(e.clientX,e.target);
         console.log("Will drop " +beforeOrAfter+ e.target.id);
 
         e.target.insertAdjacentElement(beforeOrAfter,dragItem);
-
     }
 
     function getDropBeforeOrAfter(x,target){
