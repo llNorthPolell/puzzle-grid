@@ -1,6 +1,6 @@
 .puzzle-grid{
   display: grid;
-  grid-template-columns: 24vw 24vw 24vw 24vw;
+  grid-template-columns: repeat(4, 24vw);
   grid-auto-rows: 24vh;
   gap: 1vh;
 }
@@ -10,7 +10,6 @@
   border-style: solid;
   font-size:16px;
   text-align: center;
-  transition: transform .5s;
 }
 
 .block:hover{
@@ -20,21 +19,68 @@
 .block-1-1{
   grid-row: span 1;
   grid-column: span 1;
-  background-color: cornflowerblue;
 }
 
 .block-2-1{
   grid-row: span 1;
   grid-column: span 2;
-  background-color: #d46868;
+}
+
+.block-4-1{
+  grid-row: span 1;
+  grid-column: span 4;
+}
+
+.block-1-2{
+  grid-row: span 2;
+  grid-column: span 1;
+}
+
+.block-1-4{
+  grid-row: span 4;
+  grid-column: span 1;
 }
 
 .block-2-2{
   grid-row: span 2;
   grid-column: span 2;
-  background-color: #63e269;
 }
+
+.block-4-2{
+  grid-row: span 2;
+  grid-column: span 4;
+}
+
+.block-2-4{
+  grid-row: span 4;
+  grid-column: span 2;
+}
+
+.block-4-4{
+  grid-row: span 4;
+  grid-column: span 4;
+}
+
 
 .dragging{
   filter: brightness(50%) !important;
+}
+
+
+
+/* For demo */
+.block-red {
+  background-color: #d46868;
+}
+
+.block-blue {
+  background-color: cornflowerblue;
+}
+
+.block-green {
+  background-color: #63e269;
+}
+
+.block-yellow{
+  background-color: #d3a747;
 }
