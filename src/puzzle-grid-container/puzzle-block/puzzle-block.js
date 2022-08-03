@@ -34,8 +34,12 @@ export function PuzzleBlock({children, ...props}){
             draggable={props.draggable} 
             onDragStart={handleDragStart} 
             onDragEnd={handleDragEnd} 
-            onDragOver={handleOnDragOver}>
-
+            onDragOver={handleOnDragOver}
+            onTouchStart={handleDragStart}
+            onTouchEnd={handleDragEnd}
+            onTouchMove={handleOnDragOver}
+            >
+            
             {children}
         </div>
     );

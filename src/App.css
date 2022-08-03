@@ -6,15 +6,32 @@
 }
 
 .block{
-  border-color: black;
-  border-style: solid;
-  font-size:16px;
   text-align: center;
+  transition: all .4s ease-out;
 }
 
 .block:hover{
   filter: brightness(120%);
 }
+
+
+.dragging{
+  filter: brightness(50%);
+  transform: scale(1.1);
+}
+/*
+.dragging ~ *{
+  transform: translate(0,0);
+}
+*/
+
+
+
+.block-style{
+  box-shadow: 5px 5px 20px #252525;
+  font-size:16px;
+}
+
 
 .block-1-1{
   grid-row: span 1;
@@ -60,12 +77,6 @@
   grid-row: span 4;
   grid-column: span 4;
 }
-
-
-.dragging{
-  filter: brightness(50%) !important;
-}
-
 
 
 /* For demo */
