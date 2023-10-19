@@ -1,31 +1,38 @@
 .puzzle-grid{
+  touch-action: none;
+  -ms-touch-action: none;
+  
   display: grid;
   grid-template-columns: repeat(4, 24vw);
   grid-auto-rows: 24vh;
   gap: 1vh;
+  overflow:hidden;
 }
 
 .block{
   text-align: center;
-  transition: all .4s ease-out;
+  transition: all .4s ease-in;
 }
 
 .block:hover{
   filter: brightness(120%);
 }
 
-
+.dragging-mobile,
 .dragging{
   filter: brightness(50%);
   transform: scale(1.1);
 }
-/*
-.dragging ~ *{
-  transform: translate(0,0);
+
+.dragging-mobile{
+  transition: none !important;
 }
-*/
 
-
+.dragging-mobile-overlay{
+  opacity: 0.25;
+  z-index: 100;
+  
+}
 
 .block-style{
   box-shadow: 5px 5px 20px #252525;

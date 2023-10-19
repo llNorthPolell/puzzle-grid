@@ -11,22 +11,64 @@ export function PuzzleBlock({children, ...props}){
 
     function handleOnDragOver (e){
         e.preventDefault();
-
         const dragItem = document.querySelector('.dragging');
         const beforeOrAfter = getDropBeforeOrAfter(e.clientX,e.target);
-        console.log("Will drop " +beforeOrAfter+ e.target.id);
-
+    
         e.target.insertAdjacentElement(beforeOrAfter,dragItem);
+    }
+
+    function handleTouchStart(e){
+        e.preventDefault();
+        e.target.classList.add('dragging-mobile');
+    }
+
+    function handleTouchMove (e){
+        e.preventDefault();
+
+        const dragItem = document.querySelector('.dragging-mobile');
+        const container = document.querySelector('.puzzle-grid');
+        const touch= e.touches[0] || e.changedTouches[0];
+
+        
+
+        const elementsAtTouchLoc = document.elementsFromPoint(touch.clientX, touch.clientY);
+        const target = (elementsAtTouchLoc.includes(container))?elementsAtTouchLoc[0] : undefined;
+
+        if(target){
+            if (target == dragItem) return;
+            const beforeOrAfter = getDropBeforeOrAfter(touch.clientX,target);
+            target.insertAdjacentElement(beforeOrAfter,dragItem);
+        }
+        
+    }
+
+    function handleTouchEnd (e){
+        e.target.classList.remove('dragging-mobile');
+    }
+
+
+    function handleTouchCancel (e){
+        e.target.classList.remove('dragging-mobile');
+
+        const container = document.querySelector('.puzzle-grid');
+        const dragOverlay = document.querySelector('.dragging-mobile-overlay');
+        container.removeChild(dragOverlay);
     }
 
     function getDropBeforeOrAfter(x,target){
         const box = target.getBoundingClientRect();
         const boxCenterX = box.x + box.width/2;
+        let result = "afterend";
 
-        if (x < boxCenterX) return "beforebegin";
-        else return "afterend";
+        if (x < boxCenterX) result="beforebegin";
+        
+        console.log(result +" " + target.id);
+        return result;
     }
     
+
+
+
     return (
         <div 
             id={props.id} 
@@ -35,9 +77,10 @@ export function PuzzleBlock({children, ...props}){
             onDragStart={handleDragStart} 
             onDragEnd={handleDragEnd} 
             onDragOver={handleOnDragOver}
-            onTouchStart={handleDragStart}
-            onTouchEnd={handleDragEnd}
-            onTouchMove={handleOnDragOver}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchMove={handleTouchMove}
+            onTouchCancel={handleTouchCancel}
             >
             
             {children}

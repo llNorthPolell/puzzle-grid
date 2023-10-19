@@ -2,6 +2,47 @@ import { PuzzleGridContainer } from './puzzle-grid-container/puzzle-grid-contain
 import { PuzzleBlock } from './puzzle-grid-container/puzzle-block/puzzle-block';
 import './App.css';
 
+
+const styles = [
+  {
+    key: "1x1",
+    height:"1",
+    width: "1",
+    color: "blue"
+  },
+  {
+    key: "2x1",
+    height:"1",
+    width: "2",
+    color: "red"
+  },
+  {
+    key: "2x2",
+    height: "2",
+    width: "2",
+    color: "green"
+  },
+  {
+    key: "4x2",
+    height: "2",
+    width: "4",
+    color: "yellow"
+  }
+]
+
+const data = [
+  {id: "1", style:"2x1"},
+  {id: "2", style:"2x2"},
+  {id: "3", style:"1x1"},
+  {id: "4", style:"1x1"},
+  {id: "5", style:"1x1"},
+  {id: "6", style:"2x2"},
+  {id: "7", style:"1x1"},
+  {id: "8", style:"1x1"},
+  {id: "9", style:"1x1"},
+  {id: "10", style:"4x2"},
+]
+
 function App() {
   return (
     <div>
@@ -10,16 +51,19 @@ function App() {
       <p> Here is an example of the puzzle grid with blocks with varying sizes. You may drag and drop each block. </p>
       <br/><br/>
       <PuzzleGridContainer>
-        <PuzzleBlock id="1" draggable={true} widthSpan="2" heightSpan="1" className="block-red block-style">1</PuzzleBlock>
-        <PuzzleBlock id="2" draggable={true} widthSpan="2" heightSpan="2" className="block-green block-style">2</PuzzleBlock>
-        <PuzzleBlock id="3" draggable={true} widthSpan="1" heightSpan="1" className="block-blue block-style">3</PuzzleBlock>
-        <PuzzleBlock id="4" draggable={true} widthSpan="1" heightSpan="1" className="block-blue block-style">4</PuzzleBlock>
-        <PuzzleBlock id="5" draggable={true} widthSpan="1" heightSpan="1" className="block-blue block-style">5</PuzzleBlock>
-        <PuzzleBlock id="6" draggable={true} widthSpan="2" heightSpan="2" className="block-green block-style">6</PuzzleBlock>
-        <PuzzleBlock id="7" draggable={true} widthSpan="1" heightSpan="1" className="block-blue block-style">7</PuzzleBlock>
-        <PuzzleBlock id="8" draggable={true} widthSpan="1" heightSpan="1" className="block-blue block-style">8</PuzzleBlock>
-        <PuzzleBlock id="9" draggable={true} widthSpan="1" heightSpan="1" className="block-blue block-style">9</PuzzleBlock>
-        <PuzzleBlock id="10" draggable={true} widthSpan="4" heightSpan="2" className="block-yellow block-style">10</PuzzleBlock>
+        {
+          data.map(block=>{
+            const style = styles.find(style=> style.key===block.style);
+            return <PuzzleBlock key={block.id} 
+                                id={block.id} 
+                                draggable={true} 
+                                widthSpan={style.width} 
+                                heightSpan={style.height} 
+                                className={`block-${style.color} block-style`}>
+                                  {block.id}
+                    </PuzzleBlock>
+          })
+        }
       </PuzzleGridContainer>
     </div>
   );
