@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/puzzle-grid/static/css/main.eb6b3b64.css",
-    "main.js": "/puzzle-grid/static/js/main.16ff5827.js",
+    "main.css": "/puzzle-grid/static/css/main.0b7967ee.css",
+    "main.js": "/puzzle-grid/static/js/main.6098da54.js",
     "static/js/787.8bb86f56.chunk.js": "/puzzle-grid/static/js/787.8bb86f56.chunk.js",
     "index.html": "/puzzle-grid/index.html",
-    "main.eb6b3b64.css.map": "/puzzle-grid/static/css/main.eb6b3b64.css.map",
-    "main.16ff5827.js.map": "/puzzle-grid/static/js/main.16ff5827.js.map",
+    "main.0b7967ee.css.map": "/puzzle-grid/static/css/main.0b7967ee.css.map",
+    "main.6098da54.js.map": "/puzzle-grid/static/js/main.6098da54.js.map",
     "787.8bb86f56.chunk.js.map": "/puzzle-grid/static/js/787.8bb86f56.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb6b3b64.css",
-    "static/js/main.16ff5827.js"
+    "static/css/main.0b7967ee.css",
+    "static/js/main.6098da54.js"
   ]
 }
