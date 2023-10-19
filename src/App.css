@@ -1,17 +1,23 @@
+.content{
+  width: 80 vw;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+}
+
 .puzzle-grid{
-  touch-action: none;
-  -ms-touch-action: none;
-  
   display: grid;
-  grid-template-columns: repeat(4, 24vw);
+  grid-template-columns: repeat(4, 25%);
   grid-auto-rows: 24vh;
-  gap: 1vh;
-  overflow:hidden;
+  gap: 1%;
 }
 
 .block{
+  touch-action: none;
+  -ms-touch-action: none;
+  
   text-align: center;
-  transition: all .4s ease-in;
+  transition: all .4s ease-out;
 }
 
 .block:hover{
@@ -22,16 +28,6 @@
 .dragging{
   filter: brightness(50%);
   transform: scale(1.1);
-}
-
-.dragging-mobile{
-  transition: none !important;
-}
-
-.dragging-mobile-overlay{
-  opacity: 0.25;
-  z-index: 100;
-  
 }
 
 .block-style{
@@ -101,4 +97,14 @@
 
 .block-yellow{
   background-color: #d3a747;
+}
+
+
+/* Animations */
+.translate-right{
+  transform: translate(100%,0);
+}
+
+.translate-left{
+  transform: translate(-100%,0);
 }

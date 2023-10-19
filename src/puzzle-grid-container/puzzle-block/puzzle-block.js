@@ -23,8 +23,6 @@ export function PuzzleBlock({children, ...props}){
     }
 
     function handleTouchMove (e){
-        e.preventDefault();
-
         const dragItem = document.querySelector('.dragging-mobile');
         const container = document.querySelector('.puzzle-grid');
         const touch= e.touches[0] || e.changedTouches[0];
@@ -32,10 +30,11 @@ export function PuzzleBlock({children, ...props}){
         
 
         const elementsAtTouchLoc = document.elementsFromPoint(touch.clientX, touch.clientY);
-        const target = (elementsAtTouchLoc.includes(container))?elementsAtTouchLoc[0] : undefined;
-
+        const target = elementsAtTouchLoc[0];
+        console.log(target.classList);
         if(target){
             if (target == dragItem) return;
+            if (!target.classList.contains('block')) return;
             const beforeOrAfter = getDropBeforeOrAfter(touch.clientX,target);
             target.insertAdjacentElement(beforeOrAfter,dragItem);
         }

@@ -50,21 +50,23 @@ function App() {
       <br/><br/>
       <p> Here is an example of the puzzle grid with blocks with varying sizes. You may drag and drop each block. </p>
       <br/><br/>
-      <PuzzleGridContainer>
-        {
-          data.map(block=>{
-            const style = styles.find(style=> style.key===block.style);
-            return <PuzzleBlock key={block.id} 
-                                id={block.id} 
-                                draggable={true} 
-                                widthSpan={style.width} 
-                                heightSpan={style.height} 
-                                className={`block-${style.color} block-style`}>
-                                  {block.id}
-                    </PuzzleBlock>
-          })
-        }
-      </PuzzleGridContainer>
+      <div className="content">
+        <PuzzleGridContainer>
+          {
+            data.map(block=>{
+              const style = styles.find(style=> style.key===block.style);
+              return <PuzzleBlock key={block.id} 
+                                  id={block.id} 
+                                  draggable={true} 
+                                  widthSpan={style.width} 
+                                  heightSpan={style.height} 
+                                  className={`block-${style.color} block-style`}>
+                                    {block.id}
+                      </PuzzleBlock>
+            })
+          }
+        </PuzzleGridContainer>
+      </div>
     </div>
   );
 }
