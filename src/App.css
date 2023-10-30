@@ -2,6 +2,7 @@
   width: 80 vw;
   margin: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -102,9 +103,17 @@
 
 /* Animations */
 .translate-right{
-  transform: translate(100%,0);
+  transform: translate(104%,0);
 }
 
 .translate-left{
-  transform: translate(-100%,0);
+  transform: translate(-104%,0);
+}
+
+.translate-down-row{
+  transform: translate(-312%,106%);
+}
+
+.translate-up-row{
+  transform: translate(312%,-106%);
 }

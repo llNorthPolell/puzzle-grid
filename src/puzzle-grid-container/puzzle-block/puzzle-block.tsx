@@ -1,33 +1,41 @@
 import React, {useState} from 'react';
 
-export function PuzzleBlock({children, ...props}){
-    function handleDragStart(e){
-        e.target.classList.add('dragging');
+
+export interface PuzzleBlockProps {
+    children: React.ReactNode,
+    id: string,
+    index:number,
+    draggable: boolean,
+    className: string,
+    widthSpan: string,
+    heightSpan: string
+}
+
+
+export function PuzzleBlock({children, ...props} : PuzzleBlockProps){
+    function handleDragStart(e : React.MouseEvent<HTMLElement,DragEvent>){
+        (e.target as HTMLElement).classList.add('dragging');
     }
 
-    function handleDragEnd (e) {
-        e.target.classList.remove('dragging');
+    function handleDragEnd (e: React.MouseEvent<HTMLElement,DragEvent>) {
+        (e.target as HTMLElement).classList.remove('dragging');
     }
 
-    function handleOnDragOver (e){
+    function handleOnDragOver (e: React.MouseEvent<HTMLElement,DragEvent>){
         e.preventDefault();
         const dragItem = document.querySelector('.dragging');
-        const beforeOrAfter = getDropBeforeOrAfter(e.clientX,e.target);
-    
-        e.target.insertAdjacentElement(beforeOrAfter,dragItem);
+        const beforeOrAfter = getDropBeforeOrAfter(e.clientX,e.target as Element);
+        (e.target as HTMLElement).insertAdjacentElement(beforeOrAfter as InsertPosition,dragItem as Element);
     }
 
-    function handleTouchStart(e){
+    function handleTouchStart(e : React.TouchEvent<HTMLElement>){
         e.preventDefault();
-        e.target.classList.add('dragging-mobile');
+        (e.target as HTMLElement).classList.add('dragging-mobile');
     }
 
-    function handleTouchMove (e){
+    function handleTouchMove (e: React.TouchEvent<HTMLElement>){
         const dragItem = document.querySelector('.dragging-mobile');
-        const container = document.querySelector('.puzzle-grid');
         const touch= e.touches[0] || e.changedTouches[0];
-
-        
 
         const elementsAtTouchLoc = document.elementsFromPoint(touch.clientX, touch.clientY);
         const target = elementsAtTouchLoc[0];
@@ -36,32 +44,32 @@ export function PuzzleBlock({children, ...props}){
             if (target == dragItem) return;
             if (!target.classList.contains('block')) return;
             const beforeOrAfter = getDropBeforeOrAfter(touch.clientX,target);
-            target.insertAdjacentElement(beforeOrAfter,dragItem);
+            target.insertAdjacentElement(beforeOrAfter as InsertPosition,dragItem as Element);
         }
         
     }
 
-    function handleTouchEnd (e){
-        e.target.classList.remove('dragging-mobile');
+    function handleTouchEnd (e : React.TouchEvent<HTMLElement>){
+        e.preventDefault();
+        (e.target as HTMLElement).classList.remove('dragging-mobile');
     }
 
 
-    function handleTouchCancel (e){
-        e.target.classList.remove('dragging-mobile');
+    function handleTouchCancel (e: React.TouchEvent<HTMLElement>){
+        e.preventDefault();
+        (e.target as HTMLElement).classList.remove('dragging-mobile');
 
         const container = document.querySelector('.puzzle-grid');
         const dragOverlay = document.querySelector('.dragging-mobile-overlay');
-        container.removeChild(dragOverlay);
+        container?.removeChild(dragOverlay!);
     }
 
-    function getDropBeforeOrAfter(x,target){
+    function getDropBeforeOrAfter(x:number,target:Element){
         const box = target.getBoundingClientRect();
         const boxCenterX = box.x + box.width/2;
         let result = "afterend";
 
         if (x < boxCenterX) result="beforebegin";
-        
-        console.log(result +" " + target.id);
         return result;
     }
     
